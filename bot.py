@@ -93,7 +93,8 @@ async def alarm_checker(context: ContextTypes.DEFAULT_TYPE):
 
 # Bot ishga tushirish
 def main():
-    app = Application.builder().token(TOKEN).build()
+    # job_queue ni qo‘shish uchun builderda .job_queue(True) ishlatiladi
+    app = Application.builder().token(TOKEN).job_queue(True).build()
 
     # Har daqiqada alarm_checker ishlatish
     app.job_queue.run_repeating(alarm_checker, interval=60, first=0)
